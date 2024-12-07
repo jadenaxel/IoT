@@ -1,39 +1,30 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
-import { useFonts } from 'expo-font';
-import { Stack } from 'expo-router';
-import * as SplashScreen from 'expo-splash-screen';
-import { StatusBar } from 'expo-status-bar';
-import { useEffect } from 'react';
-import 'react-native-reanimated';
+import type { FC } from "react";
+import type { FirebaseApp } from "firebase/app";
+import type { Database } from "firebase/database";
 
-import { useColorScheme } from '@/hooks/useColorScheme';
+import { Stack } from "expo-router";
+import { initializeApp } from "firebase/app";
+import { getDatabase } from "firebase/database";
 
-// Prevent the splash screen from auto-hiding before asset loading is complete.
-SplashScreen.preventAutoHideAsync();
+const firebaseConfig: any = {
+    apiKey: "AIzaSyCxoRR2QHqqWGE-DaPJq39-wHRoY-RFTJY",
+    authDomain: "iot-cafetera.firebaseapp.com",
+    databaseURL: "https://iot-cafetera-default-rtdb.firebaseio.com",
+    projectId: "iot-cafetera",
+    storageBucket: "iot-cafetera.firebasestorage.app",
+    messagingSenderId: "174251088261",
+    appId: "1:174251088261:web:423967cb95098465494cec",
+};
 
-export default function RootLayout() {
-  const colorScheme = useColorScheme();
-  const [loaded] = useFonts({
-    SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
-  });
+export const FIREBASE_APP: FirebaseApp = initializeApp(firebaseConfig);
+export const db: Database = getDatabase(FIREBASE_APP);
 
-  useEffect(() => {
-    if (loaded) {
-      SplashScreen.hideAsync();
-    }
-  }, [loaded]);
+const RootLayout: FC = (): JSX.Element => {
+    return (
+        <Stack>
+            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        </Stack>
+    );
+};
 
-  if (!loaded) {
-    return null;
-  }
-
-  return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="+not-found" />
-      </Stack>
-      <StatusBar style="auto" />
-    </ThemeProvider>
-  );
-}
+export default RootLayout;
