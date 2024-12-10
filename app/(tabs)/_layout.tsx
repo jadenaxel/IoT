@@ -2,6 +2,8 @@ import type { FC } from "react";
 
 import { Tabs } from "expo-router";
 
+import { adjustedFontSize } from "../../config";
+
 const TabLayout: FC = (): JSX.Element => {
     return (
         <Tabs screenOptions={{ tabBarStyle: { display: "none" } }}>
@@ -17,6 +19,10 @@ const TabLayout: FC = (): JSX.Element => {
                         shadowOpacity: 0.25,
                         shadowRadius: 3.84,
                         elevation: 5,
+                    },
+                    headerTitleAlign: "center",
+                    headerTitleStyle: {
+                        fontSize: adjustedFontSize(),
                     },
                 }}
             />

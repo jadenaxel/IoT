@@ -6,15 +6,7 @@ import { Stack } from "expo-router";
 import { initializeApp } from "firebase/app";
 import { getDatabase } from "firebase/database";
 
-const firebaseConfig: any = {
-    apiKey: "AIzaSyCxoRR2QHqqWGE-DaPJq39-wHRoY-RFTJY",
-    authDomain: "iot-cafetera.firebaseapp.com",
-    databaseURL: "https://iot-cafetera-default-rtdb.firebaseio.com",
-    projectId: "iot-cafetera",
-    storageBucket: "iot-cafetera.firebasestorage.app",
-    messagingSenderId: "174251088261",
-    appId: "1:174251088261:web:423967cb95098465494cec",
-};
+import { firebaseConfig } from "@/config";
 
 export const FIREBASE_APP: FirebaseApp = initializeApp(firebaseConfig);
 export const db: Database = getDatabase(FIREBASE_APP);

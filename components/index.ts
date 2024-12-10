@@ -1,3 +1,3 @@
-import CircleSlider from "./CircleSlider";
+import Loading from "./Loading";
 
-export { CircleSlider };
+export { Loading };
