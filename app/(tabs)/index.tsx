@@ -67,7 +67,7 @@ const Home: FC = (): JSX.Element => {
 
             const CUP_RANGE = CUP_QUANTITY.filter((item: any) => item.QUANTITY === CantP);
             if (CUP_RANGE[0] !== undefined) {
-                if (CUP_RANGE[0].RANGE.every((item: any) => item >= sensorShot.Nivel_Agua)) {
+                if (CUP_RANGE[0].RANGE.every((item: any) => item > sensorShot.Nivel_Agua)) {
                     return;
                 }
             }
